@@ -116,17 +116,110 @@
   margin-bottom: 0.5rem;
 }
 
+/* Enhanced Mobile Responsive Design */
 @media (max-width: 768px) {
+  .file-dropzone-container {
+    margin-bottom: 1.5rem;
+  }
+  
   .file-dropzone {
     padding: 2rem 1rem;
-    margin: 1rem 0;
+    min-height: 160px;
+    border-radius: 8px;
+  }
+  
+  .dropzone-content {
+    gap: 0.75rem;
   }
   
   .dropzone-content h3 {
     font-size: 1.25rem;
   }
   
+  .dropzone-content p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  
   .supported-formats {
     font-size: 0.75rem;
+    text-align: center;
+  }
+  
+  .dropzone-icon {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .file-rejections {
+    padding: 0.75rem;
+    margin-top: 0.75rem;
+    border-radius: 6px;
+  }
+  
+  .file-rejections h4 {
+    font-size: 0.9rem;
+  }
+  
+  .file-rejections li {
+    margin-bottom: 0.25rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Small mobile screens */
+@media (max-width: 480px) {
+  .file-dropzone {
+    padding: 1.5rem 0.75rem;
+    min-height: 140px;
+  }
+  
+  .dropzone-content {
+    gap: 0.5rem;
+  }
+  
+  .dropzone-content h3 {
+    font-size: 1.1rem;
+  }
+  
+  .dropzone-content p {
+    font-size: 0.85rem;
+    padding: 0 0.5rem;
+  }
+  
+  .supported-formats {
+    font-size: 0.7rem;
+  }
+  
+  .dropzone-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .spinner {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Landscape orientation */
+@media (max-width: 896px) and (orientation: landscape) {
+  .file-dropzone {
+    min-height: 120px;
+    padding: 1.5rem 1rem;
+  }
+  
+  .dropzone-content {
+    flex-direction: row;
+    gap: 1rem;
+    text-align: left;
+  }
+  
+  .dropzone-content h3 {
+    font-size: 1rem;
+  }
+  
+  .dropzone-content p {
+    font-size: 0.8rem;
   }
 }

@@ -262,29 +262,161 @@
   }
 }
 
+/* Enhanced Mobile Responsive Design */
 @media (max-width: 768px) {
   .preview-modal-overlay {
-    padding: 10px;
+    padding: 0;
   }
 
   .preview-modal {
     width: 100vw;
     height: 100vh;
     border-radius: 0;
+    max-width: none;
+    max-height: none;
+  }
+  
+  .preview-header {
+    padding: 1rem;
+    flex-shrink: 0;
+  }
+  
+  .preview-header h3 {
+    font-size: 1.1rem;
+  }
+  
+  .btn-close {
+    padding: 12px;
+    min-width: 44px;
+    min-height: 44px;
   }
 
   .settings-summary {
     flex-direction: column;
     gap: 8px;
   }
+  
+  .settings-summary span {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    text-align: center;
+  }
 
   .preview-navigation {
     flex-direction: column;
     gap: 12px;
+    padding: 1rem;
   }
 
   .preview-actions {
     flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .preview-controls {
+    padding: 1rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  
+  .btn-toggle {
+    padding: 0.75rem 1.25rem;
+    min-height: 44px;
+    font-size: 1rem;
+    flex: 1;
+    min-width: 120px;
+  }
+  
+  .preview-settings-info {
+    padding: 1rem;
+  }
+  
+  .preview-explanation {
+    margin-top: 0.75rem;
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+  
+  .preview-info-bar {
+    padding: 0.75rem;
+  }
+  
+  .preview-info-bar .preview-mode-info {
+    font-size: 0.9rem;
+  }
+}
+
+/* Small mobile screens */
+@media (max-width: 480px) {
+  .preview-header {
+    padding: 0.75rem;
+  }
+  
+  .preview-header h3 {
+    font-size: 1rem;
+  }
+  
+  .settings-summary span {
+    padding: 0.75rem;
+    font-size: 0.85rem;
+  }
+  
+  .preview-navigation {
+    padding: 0.75rem;
+    gap: 0.75rem;
+  }
+  
+  .btn-toggle {
+    padding: 1rem 1.5rem;
+    min-height: 48px;
+    font-size: 1.1rem;
+  }
+  
+  .preview-controls {
+    padding: 0.75rem;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .preview-settings-info {
+    padding: 0.75rem;
+  }
+  
+  .preview-explanation {
+    padding: 0.75rem;
+    font-size: 0.85rem;
+  }
+  
+  .preview-info-bar {
+    padding: 0.75rem;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (max-width: 896px) and (orientation: landscape) {
+  .preview-modal {
+    height: 100vh;
+  }
+  
+  .preview-header {
+    padding: 0.75rem 1rem;
+  }
+  
+  .preview-navigation {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+  }
+  
+  .preview-actions {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+  
+  .preview-controls {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
   }
 }
 

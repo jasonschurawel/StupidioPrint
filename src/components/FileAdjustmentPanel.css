@@ -355,6 +355,7 @@
   100% { transform: rotate(360deg); }
 }
 
+/* Enhanced Mobile Responsive Design */
 @media (max-width: 768px) {
   .adjustment-grid {
     grid-template-columns: 1fr;
@@ -366,6 +367,7 @@
     flex-direction: column;
     gap: 0.75rem;
     align-items: stretch;
+    padding: 1rem;
   }
   
   .adjustment-quick-actions {
@@ -379,6 +381,7 @@
   
   .pages-per-sheet-section {
     width: 100%;
+    padding: 1rem;
   }
   
   .layout-container {
@@ -402,6 +405,103 @@
   .din-sheet-preview {
     width: 196px; /* 140 * 1.4 = 196px */
     height: 277px; /* 198 * 1.4 ≈ 277px - Adjusted for smaller screens but still 1.4x */
+  }
+  
+  /* Touch-friendly button sizing */
+  .btn-reset {
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    min-height: 44px; /* iOS touch target minimum */
+  }
+  
+  /* Larger sliders for touch */
+  .slider {
+    height: 8px;
+    border-radius: 4px;
+  }
+  
+  .slider::-webkit-slider-thumb {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+  }
+  
+  /* Larger checkboxes for touch */
+  .grid-checkbox {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .layout-cell {
+    min-height: 44px; /* Touch-friendly minimum */
+    gap: 6px;
+  }
+  
+  .page-number {
+    font-size: 14px;
+  }
+}
+
+/* Small mobile screens */
+@media (max-width: 480px) {
+  .adjustment-grid {
+    padding: 0.75rem;
+    gap: 0.75rem;
+  }
+  
+  .adjustment-header {
+    padding: 0.75rem;
+  }
+  
+  .pages-per-sheet-section {
+    padding: 0.75rem;
+  }
+  
+  .din-sheet-preview {
+    width: 168px; /* 120 * 1.4 = 168px */
+    height: 238px; /* 170 * 1.4 = 238px */
+  }
+  
+  /* Even larger touch targets on small screens */
+  .layout-cell {
+    min-height: 48px;
+  }
+  
+  .grid-checkbox {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .page-number {
+    font-size: 16px;
+    font-weight: 700;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (max-width: 896px) and (orientation: landscape) {
+  .file-adjustment-main {
+    flex-direction: row;
+    gap: 1rem;
+  }
+  
+  .layout-container {
+    flex-direction: row;
+    gap: 1rem;
+  }
+  
+  .layout-controls {
+    flex: 0 0 200px;
+    width: 200px;
+  }
+  
+  .din-sheet-preview {
+    width: 140px;
+    height: 198px;
   }
 }
 
