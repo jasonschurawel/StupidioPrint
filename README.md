@@ -30,10 +30,10 @@ The interface will be available at `http://localhost:4173` - bookmark this in yo
 Host it on one computer and let everyone in your office/network access it from their devices.
 
 ```bash
-make run
+make run-network
 ```
 
-Everyone can then access it at `http://[your-computer-ip]:4173` from any device on the network. (Currently ignoring Host setup)
+Everyone can then access it at `http://[your-computer-ip]:4173` from any device on the network. The command will show you the exact Network URL to share.
 
 ## ✨ What Makes It Simple
 
@@ -79,10 +79,10 @@ chmod +x config_printer.sh
 
 # Install and start
 make install
-make run
+make run-network
 ```
 
-Then share the URL `http://[your-ip]:4173` with users.
+The command will display both local and network URLs. Share the Network URL with users.
 
 ## 🔧 Configuration Options
 

@@ -6,10 +6,11 @@
 help:
 	@echo "StupidoPrint - Available commands:"
 	@echo ""
-	@echo "  make install  - Install dependencies"
-	@echo "  make build    - Lint and build the application"
-	@echo "  make run      - Start the application in production mode"
-	@echo "  make run-dev  - Start the application in development mode"
+	@echo "  make install     - Install dependencies"
+	@echo "  make build       - Lint and build the application"
+	@echo "  make run         - Start the application in production mode (localhost only)"
+	@echo "  make run-network - Start the application with network access (LAN)"
+	@echo "  make run-dev     - Start the application in development mode"
 	@echo "  make stop     - Stop running servers"
 	@echo "  make config   - Configure printer settings"
 	@echo "  make status   - Show current configuration"
@@ -87,6 +88,47 @@ run:
 	@echo "Starting production preview server..."
 	@npm run preview &
 	@sleep 3
+
+# Start the application in production mode with network access
+run-network:
+	@if [ ! -d "dist" ]; then \
+		echo "Build not found. Building application..."; \
+		$(MAKE) clean-build; \
+	else \
+		echo "Build found. Checking if rebuild is needed..."; \
+		if [ "src" -nt "dist" ] || [ "package.json" -nt "dist" ] || [ "vite.config.ts" -nt "dist" ]; then \
+			echo "Source files newer than build. Rebuilding..."; \
+			$(MAKE) clean-build; \
+		else \
+			echo "Build is up to date. Skipping build step."; \
+		fi; \
+	fi
+	@if [ ! -f "$$HOME/.stupidoprint_config" ]; then \
+		echo "No printer configuration found. Running initial setup..."; \
+		./config_printer.sh setup; \
+	else \
+		echo "Printer configuration found. Press Ctrl+C within 10 seconds to reconfigure..."; \
+		timeout 10 bash -c 'read -p "Press Enter to reconfigure printer or wait..." && ./config_printer.sh setup' || true; \
+	fi
+	@echo "Starting StupidoPrint application with network access..."
+	@echo "Stopping any existing servers..."
+	@-pkill -f "npm.*start" 2>/dev/null || true
+	@-pkill -f "npm.*dev" 2>/dev/null || true
+	@-pkill -f "node.*server.js" 2>/dev/null || true
+	@-pkill -f "vite.*preview" 2>/dev/null || true
+	@sleep 2
+	@echo "Starting print server..."
+	@cd server && npm start &
+	@sleep 3
+	@echo "Starting production preview server with network access..."
+	@npm run preview -- --host 0.0.0.0 &
+	@sleep 3
+	@echo ""
+	@echo "🌐 Application is now accessible from the network:"
+	@echo "   Local:    http://localhost:4173"
+	@echo "   Network:  http://$$(hostname -I | awk '{print $$1}'):4173"
+	@echo ""
+	@echo "Share the Network URL with other devices on your LAN!"
 
 # Start the application in development mode
 run-dev:
