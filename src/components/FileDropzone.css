@@ -1,0 +1,132 @@
+.file-dropzone-container {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.file-dropzone {
+  border: 2px dashed #cbd5e0;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  text-align: center;
+  background-color: #f8fafc;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.file-dropzone:hover {
+  border-color: #3182ce;
+  background-color: #ebf8ff;
+}
+
+.file-dropzone.active {
+  border-color: #3182ce;
+  background-color: #bee3f8;
+  transform: scale(1.02);
+}
+
+.file-dropzone.processing {
+  border-color: #38a169;
+  background-color: #f0fff4;
+  cursor: not-allowed;
+}
+
+.dropzone-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dropzone-icon {
+  color: #718096;
+  transition: color 0.3s ease;
+}
+
+.file-dropzone:hover .dropzone-icon {
+  color: #3182ce;
+}
+
+.dropzone-content h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.dropzone-content p {
+  margin: 0;
+  color: #718096;
+  font-size: 1rem;
+}
+
+.supported-formats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  color: #a0aec0;
+}
+
+.processing-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #e2e8f0;
+  border-top: 3px solid #3182ce;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.file-rejections {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #fed7d7;
+  border: 1px solid #fc8181;
+  border-radius: 8px;
+  color: #c53030;
+}
+
+.file-rejections h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.file-rejections ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.file-rejections li {
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .file-dropzone {
+    padding: 2rem 1rem;
+    margin: 1rem 0;
+  }
+  
+  .dropzone-content h3 {
+    font-size: 1.25rem;
+  }
+  
+  .supported-formats {
+    font-size: 0.75rem;
+  }
+}
