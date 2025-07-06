@@ -1,6 +1,7 @@
 import { PDFDocument, degrees } from 'pdf-lib';
 import { saveAs } from 'file-saver';
 import type { FileData, FileAdjustments, PrintSettings } from '../types';
+import { apiCall } from './apiUtils';
 
 export const createFilePreview = async (file: File): Promise<string | null> => {
   return new Promise((resolve) => {
@@ -93,7 +94,7 @@ export const systemPrint = async (fileData: FileData, settings: PrintSettings, a
     }
     
     // Send to our print server
-    const response = await fetch('http://localhost:3001/api/print', {
+    const response = await apiCall('/api/print', {
       method: 'POST',
       body: formData
     });

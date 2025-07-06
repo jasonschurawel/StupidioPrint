@@ -4,13 +4,34 @@ const cors = require('cors');
 const { exec } = require('child_process');
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 
 const app = express();
 const PORT = 3001;
 
-// Enable CORS for React app
+// Get local IP address for network access
+const getLocalIP = () => {
+  const interfaces = os.networkInterfaces();
+  for (const interfaceName of Object.keys(interfaces)) {
+    for (const interface of interfaces[interfaceName]) {
+      if (interface.family === 'IPv4' && !interface.internal) {
+        return interface.address;
+      }
+    }
+  }
+  return 'localhost';
+};
+
+const localIP = getLocalIP();
+
+// Enable CORS for both localhost and network access
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: [
+    'http://localhost:5173',
+    'http://localhost:4173',
+    `http://${localIP}:5173`,
+    `http://${localIP}:4173`
+  ],
   credentials: true
 }));
 
@@ -135,8 +156,17 @@ app.get('/api/config', (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Print server running on http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log('🖨️  Print server running on:');
+  console.log(`   Local:   http://localhost:${PORT}`);
+  console.log(`   Network: http://${localIP}:${PORT}`);
+  console.log('');
+  console.log('📡 Allowed CORS origins:');
+  console.log('   http://localhost:5173 (dev)');
+  console.log('   http://localhost:4173 (preview)');
+  console.log(`   http://${localIP}:5173 (network dev)`);
+  console.log(`   http://${localIP}:4173 (network preview)`);
+  console.log('');
   console.log('Available endpoints:');
   console.log('  POST /api/print - Submit print jobs');
   console.log('  GET /api/config - Get printer configuration');
